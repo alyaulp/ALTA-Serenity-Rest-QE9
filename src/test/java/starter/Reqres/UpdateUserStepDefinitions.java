@@ -6,7 +6,7 @@ import starter.Utils.Constant;
 
 import java.io.File;
 
-public class UpdateUserDefinitions {
+public class UpdateUserStepDefinitions {
 
     @Steps
     ReqresAPI reqresAPI;

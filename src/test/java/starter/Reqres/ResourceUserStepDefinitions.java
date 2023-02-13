@@ -2,7 +2,6 @@ package starter.Reqres;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import net.serenitybdd.rest.SerenityRest;
@@ -14,25 +13,9 @@ import java.io.File;
 
 import static org.hamcrest.Matchers.equalTo;
 
-public class GetStepDefinitions {
+public class ResourceUserStepDefinitions {
     @Steps
     ReqresAPI reqresAPI;
-
-    // Get Single User
-    @Given("Get single user with valid parameter id {int}")
-    public void getSingleUserWithValidParameterIdId(int id) {
-        reqresAPI.getSingleUser(id);
-    }
-
-    @And("Response body should be null") // Belum berhasil validasi null body
-    public void responseBodyShouldBeNull(int page) {
-        SerenityRest.and().body("", null);
-    }
-
-    @Then("Status code should be {int} Not Found")
-    public void statusCodeShouldBeNotFound(int NotFound) {
-        SerenityRest.then().statusCode(NotFound);
-    }
 
     // Get List Resource
     @Given("Get list resource user with valid data")
@@ -51,13 +34,6 @@ public class GetStepDefinitions {
                 .body(ReqresResponses.DATA_ID, equalTo(id))
                 .body(ReqresResponses.DATA_NAME, equalTo(name));
     }
-
-    @And("Validate get single user valid json schema")
-    public void validateGetSingleUserValidJsonSchema() {
-        File jsonSchemaSingleUser = new File(Constant.JSONSchema + "SingleUserValidJSONSchema.json");
-        SerenityRest.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(jsonSchemaSingleUser));
-    }
-
 
     @Given("Get single resource user with id {int}")
     public void getSingleResourceUserWithId(int id) {
